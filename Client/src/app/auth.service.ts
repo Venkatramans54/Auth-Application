@@ -21,4 +21,8 @@ export class AuthService {
   getProducts(){
     return this.http.get<any>(this.url+"products")
   }
+
+  isLoggedIn(){
+    return !!localStorage.getItem('token')
+  }
 }

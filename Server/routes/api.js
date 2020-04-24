@@ -1,5 +1,7 @@
 const express = require('express');
 const bcrypt=require('bcrypt');
+require('dotenv').config()
+const jwt=require('jsonwebtoken');
 
 const User=require("../models/user")
 
@@ -74,7 +76,9 @@ routes.post('/login',(req,res)=>{
             }
             else{
                 if(await bcrypt.compare(userData.password,user.password)){
-                    res.status(200).send(user)   
+                    const accessToken=jwt.sign({payload:user._id},process.env.SECRET_ACCESS_TOKEN)
+                    res.status(200).send({accessToken})   
+                    //res.status(200).send(user)   
                 }
                 else{
                     res.status(401).send("Invalid Password")

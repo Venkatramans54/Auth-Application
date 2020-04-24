@@ -4,6 +4,7 @@ import { Routes,RouterModule } from '@angular/router';
 import { LoginComponent } from 'src/app/login/login.component';
 import { RegisterComponent } from 'src/app/register/register.component';
 import { ProductsComponent } from 'src/app/products/products.component';
+import { AuthGuard } from 'src/app/auth.guard';
 
 
 const routes: Routes=[
@@ -21,7 +22,8 @@ const routes: Routes=[
   },
   {
     path:'products',
-    component: ProductsComponent
+    component: ProductsComponent,
+    canActivate: [AuthGuard]
   }
 ]
 @NgModule({
