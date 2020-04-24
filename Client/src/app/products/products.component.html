@@ -1,0 +1,14 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let prod of productsList">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="card-title"><h5>{{prod.name}}</h5></div>
+                <div class="card-body">{{prod.price}}</div>
+                <a href="#" class="btn btn-primary">Buy Products</a>
+            </div>
+            <div class="card-footer text-muted">
+                You get a pack of {{prod.quantity }}
+            </div>
+        </div>
+    </div>
+</div>
