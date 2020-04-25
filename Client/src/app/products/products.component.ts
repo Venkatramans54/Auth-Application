@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router'
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
@@ -9,13 +11,16 @@ import { AuthService } from 'src/app/auth.service';
 export class ProductsComponent implements OnInit {
 
   productsList:any[]
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService, private route:Router) { }
 
   ngOnInit(): void {
     this.auth.getProducts()
       .subscribe(
         res=>this.productsList=res,
-        err=>console.log()
+        err=>{
+          this.route.navigate(['/login'])
+          alert('Auth Error')
+        }
       )
     
   }

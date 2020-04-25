@@ -39,11 +39,24 @@ let products=[
     }
 ]
 
-routes.get('/',(req,res)=>{
-    res.send('Hi from api');
-});
+function verifyToken(req,res,next){
+    if(!req.headers.authorization)
+        return res.status(401).send('Unauthorized Request')
 
-routes.get('/products',(req,res)=>{
+    let token=req.headers.authorization.split(' ')[1]
+    if(token=='null')
+    return res.status(401).send('Unauthorized Request')
+
+    let payload=jwt.verify(token,process.env.SECRET_ACCESS_TOKEN)
+    if(!payload)
+        return res.status(401).send('Unauthorized Request')
+    
+    req._id=payload.subject
+    next()
+}
+
+
+routes.get('/products', verifyToken,(req,res)=>{
     res.send(products)
 })
 
