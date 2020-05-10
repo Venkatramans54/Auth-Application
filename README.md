@@ -2,8 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
-Technologies Used: 
-Client: Angular
+Technologies Used:                                                                                                                        
+Client: Angular                                                                                                                          
 Server: Nodejs, JWT, Bcrypt
 
 ## Development server
